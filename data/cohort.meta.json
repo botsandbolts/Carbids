@@ -1,0 +1,23 @@
+{
+  "target_kind": "platform_reported_sale_price",
+  "settlement_verified": false,
+  "currency": "USD",
+  "raw_rows": 558837,
+  "malformed_csv_rows": 26,
+  "eligible_rows": 550291,
+  "duplicates_removed": 8515,
+  "rejections": {},
+  "sources": [
+    "wholesale_2015"
+  ],
+  "counts": {
+    "train": 384271,
+    "test": 83627,
+    "validation": 82393
+  },
+  "rich_text_rows": 0,
+  "fraction": 1.0,
+  "split": "Chronological dates, one canonical sale per VIN and duplicate description removed before splitting",
+  "source_sha256": "acfe086790275ce843700303f0701446f5326852be1ee11d9d2e9407d0301e8d",
+  "additional_unparsed_csv_rows": 5
+}

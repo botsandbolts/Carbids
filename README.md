@@ -140,4 +140,3 @@ The 2015 wholesale benchmark intentionally has **no Census features**: all reque
 When enriched columns are present in a training cohort, the tabular feature builder includes the selected ACS numeric fields; no existing shipped model is silently altered. A Census-enabled inference model requires either its complete enriched input vector or an explicit `as_of` date and a panel at `CARBIDS_CENSUS_PANEL` (default `data/census/acs5-2016-2022-state.csv`). The API accepts an optional `as_of`.
 
 See [CENSUS_CONTEXT.md](CENSUS_CONTEXT.md) for the statistical interpretation, release references, margins of error, geographic caveats and revision limits. No model-performance improvement is claimed without matched future evaluation.
-

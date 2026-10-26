@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.runtime/
+data/*.zip
+data/*.jsonl
+data/*.log
+data/imports/
+artifacts/
+models/*/optimizer-checkpoints/
+models/*/assessment-lightgbm.txt
+*.pt
+*.safetensors
+.DS_Store
+data/census/
