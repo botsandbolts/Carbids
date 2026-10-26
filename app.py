@@ -11,7 +11,7 @@ from carbids.explanations import render_explanation
 ROOT=Path(__file__).parent
 st.set_page_config(page_title='CarBids Studio',page_icon='🏁',layout='wide')
 st.markdown('''<style>.stApp{background:linear-gradient(135deg,#f6f8f3,#f0f5f4)}h1,h2,h3{color:#173c35}div[data-testid="stMetric"]{background:white;border:1px solid #d7e4dd;border-radius:12px;padding:18px}div[data-testid="stSidebar"]{background:#e5ede6}.stButton>button{border-radius:9px}code{font-size:.85em}</style>''',unsafe_allow_html=True)
-st.title('🏁 CarBids Studio')
+st.title('🏁 CarBids + Pricing Studio')
 st.caption('The auction is over. The number-crunching has just begun.')
 st.info('Target: publicly reported completed-sale prices in USD. A published “sold” result is not independent proof of payment settlement. Buyer fees, taxes and shipping are outside the estimate.')
 
@@ -44,7 +44,10 @@ with st.sidebar:
         st.write('Sources:',', '.join(manifest['sources']))
     else:manifest={};st.warning('No completed model yet. Import data and train; the app will not invent a price.')
 
-value,explain,data,performance,training,bridge,census,learn=st.tabs(['Value a car','Explainable ML','Auction explorer','Model report card','Data & training','Bridge to Pricing','Census context','Learn · two gears'])
+compare,value,explain,data,performance,training,bridge,census,learn=st.tabs(['Pricing + CarBids','Historical auction model','Explainable ML','Auction explorer','Model report card','Data & training','Bridge to Pricing','Census context','Learn · two gears'])
+with compare:
+    from marketbridge.ui import render_comparison
+    render_comparison(ROOT)
 with value:
     st.subheader('What might a comparable auction sale achieve?')
     st.write('Enter pre-sale facts. “My neighbour thinks it is worth a fortune” is not currently a supported sensor.')
@@ -87,6 +90,8 @@ with value:
         st.download_button('Download this valuation',json.dumps({'target_kind':TARGET,'settlement_verified':False,'model':location,'inputs':saved[2],'prediction':p},indent=2),file_name='carbids-valuation.json',mime='application/json')
         st.success('Your price has an explanation. Open Explainable ML for the committee minutes.')
         if saved[2]['year']>manifest.get('model_year_range',[1886,2027])[-1]:st.warning('This model year is newer than the model’s training coverage.')
+        from marketbridge.ui import render_asking_companion
+        render_asking_companion(ROOT,saved[2])
         st.caption('Training sale dates: '+' to '.join(manifest.get('sale_dates',['see model report'])))
     with st.expander('Batch valuation · CSV in, sale estimates out'):
         batch=st.file_uploader('Pre-sale structured fields CSV',type=['csv'],key='batch')

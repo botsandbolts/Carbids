@@ -13,3 +13,8 @@ models/*/assessment-lightgbm.txt
 *.safetensors
 .DS_Store
 data/census/
+
+reports/pricing-with-carbids.csv
+reports/*.partial
+
+reports/pricing-with-carbids.csv.gz

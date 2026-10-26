@@ -87,3 +87,7 @@ Designed, not fitted: retail hierarchical residual model, domain classifier/tran
 - Tibshirani, Barber, Candès and Ramdas (2019), [Conformal Prediction Under Covariate Shift](https://proceedings.neurips.cc/paper/2019/hash/8fb21ee7a2207526da55a679f0332de2-Abstract.html).
 - [Doubly robust calibration of prediction sets under covariate shift](https://academic.oup.com/jrsssb/article/86/4/943/7618755), JRSS B (2024).
 - Heckman, [Sample Selection Bias As a Specification Error](https://www.nber.org/papers/w0172).
+
+## Implemented structural transfer extension
+
+The shared `marketbridge` package now fits age/mileage-constrained auction structure with empirical partial pooling, a lagged official BLS used-car CPI anchor, and a downstream asking-price experiment. It does not fit the matched-retail residual or selection models described above. See [INTEGRATION.md](INTEGRATION.md) for actual trained bundles, counterfactual decomposition, held-out results and explicit transport assumptions.

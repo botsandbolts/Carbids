@@ -7,7 +7,7 @@ An auction-sale counterpart to [Pricing](https://github.com/botsandbolts/Pricing
 ## What works now
 
 - A real trained tabular baseline on **550,291 distinct vehicles**, using the complete eligible public wholesale dataset, not a percentage pilot.
-- Eight GUI workspaces: valuation, explainable ML, auction explorer, model report card, import/training, bridge to Pricing, Census context, and plain-English/technical learning.
+- Nine GUI workspaces, including the default structural Pricing + CarBids comparison: valuation, explainable ML, auction explorer, model report card, import/training, bridge to Pricing, Census context, and plain-English/technical learning.
 - Native LightGBM TreeSHAP, additive reconstruction checks, source/year warnings and a mileage scenario; explanations concern model behaviour, not causation.
 - Batch CSV valuation, valuation/evaluation downloads, isolated export imports, an optional REST API, Codespaces startup and CI checks.
 - Full MiniLM-L6 regression → three-fold OOF `predicted_text_price` → training-only Isolation Forest auto → Huber LightGBM workflow, with atomic optimizer and fold checkpoints.
@@ -144,3 +144,9 @@ The 2015 wholesale benchmark intentionally has **no Census features**: all reque
 When enriched columns are present in a training cohort, the tabular feature builder includes the selected ACS numeric fields; no existing shipped model is silently altered. A Census-enabled inference model requires either its complete enriched input vector or an explicit `as_of` date and a panel at `CARBIDS_CENSUS_PANEL` (default `data/census/acs5-2016-2022-state.csv`). The API accepts an optional `as_of`.
 
 See [CENSUS_CONTEXT.md](CENSUS_CONTEXT.md) for the statistical interpretation, release references, margins of error, geographic caveats and revision limits. No model-performance improvement is claimed without matched future evaluation.
+
+## Integrated structural Pricing + CarBids GUI
+
+The default **Pricing + CarBids** tab transfers auction depreciation/relative-value structure using the vehicle's **age at valuation**, actual mileage and a lagged official BLS used-car price index. It shows the 2021 asking estimate separately, an age/market-adjusted auction equivalent, an experimental asking LightGBM with auction features, decompositions, support warnings and per-car batch export. Both engines and trained weights are bundled; no second service or GPU is required.
+
+The transfer experiment slightly worsened test MAE ($3,329 → $3,338) while improving RMSE ($6,839 → $6,807); the original asking model remains the default. The full 211,844-row Pricing cohort was processed, with 717 unavailable auction equivalents explicitly flagged. Retail-channel premiums remain assumptions, not fitted sale calibration. See [INTEGRATION.md](INTEGRATION.md) for equations/specification, actual assessments, index provenance, leakage controls and reproduction commands.
