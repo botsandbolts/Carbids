@@ -32,6 +32,7 @@ def choices():
 
 with st.sidebar:
     st.header('Your auction desk')
+    st.caption('This selector controls the historical auction workspaces. Pricing + CarBids uses its own bundled structural and asking models.')
     available=choices()
     location=st.selectbox('Trained model',available) if available else None
     st.caption('Baseline = structured vehicle fields. Enhanced = MiniLM description signal + LightGBM. Asking-price models are refused at load time.')
