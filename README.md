@@ -40,6 +40,10 @@ python -m streamlit run app.py
 
 The shipped compressed LightGBM model loads without PyTorch. For the enhanced branch, install `requirements-training.txt` too. Codespaces installs baseline dependencies and starts the GUI on forwarded port **8501** automatically. If needed: `bash scripts/start-studio.sh`.
 
+### If the GUI does not open
+
+The GitHub repository page displays code; it does not host the running dashboard. In a Codespace, run `git pull` followed by `bash scripts/start-studio.sh`. The launcher waits for a healthy server and prints your forwarded HTTPS address. Open that address, or use **Ports → 8501 → Open in Browser**. Keep the Codespace running. If port 8501 is absent, add it in the Ports panel. A local `localhost:8501` link refers to the computer running Python, so it will not reach a remote Codespace from your phone. For an always-available separate app, deploy `app.py` with `requirements.txt` on a Python-capable Streamlit host.
+
 ## Reproduce the real baseline
 
 ```bash
